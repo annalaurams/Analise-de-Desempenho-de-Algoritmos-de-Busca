@@ -24,7 +24,7 @@ Para tanto, temos as seguintes diretrizes de execução:
 
 
 <div>
- <br><p align="justify"> Jullia Fernandes</p>
+ <br><p align="justify"> Jullia Fernandes Felizardo</p>
  <a href="https://t.me/JulliaFernandes">
  <img align="center" src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
  </div>
