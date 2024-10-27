@@ -1,9 +1,3 @@
-from collections import deque
-import time
-
-
-
-
 labirinto = [
     ['A', 'B!?', '!C', 'D?', 'E'],
     ['?F', '?G?', '?H', 'I!?', '?!J'],
@@ -43,55 +37,52 @@ def get_permitted_moves(cell):
 
     return list(moves.values())
 
-def BFS(labirinto, start, end):
-    
+def DFS(labirinto, start, end):
     LINHAS, COLUNAS = len(labirinto), len(labirinto[0])
     visitados = set()
-    fila = deque([(start, 0)])  # Inclui o comprimento inicial
-    visitados.add(start)
+    caminho_atual = []
+    encontrou_caminho = False
 
-    # Inicializa fila_letras como uma lista vazia
-    fila_letras = []
-
-    while fila:
-        (linha, coluna), comprimento = fila.popleft()
+    def dfs_recursive(linha, coluna, caminho):
+        nonlocal encontrou_caminho
         
-        # Mostra a célula atual e o comprimento até o momento
-        print(f"BFS: Letra atual: {labirinto[linha][coluna]} com comprimento atual: {comprimento}")
-
         # Checa se alcançou o ponto de destino
         if (linha, coluna) == end:
-            print(f"BFS: Caminho encontrado até {labirinto[end[0]][end[1]]} com comprimento: {comprimento}")
-            return comprimento
-        
+            print(f"DFS: Caminho encontrado até {labirinto[end[0]][end[1]]} com caminho: {' -> '.join(caminho)}")
+            return True
+
+        # Marca como visitado
+        visitados.add((linha, coluna))
+        caminho.append(labirinto[linha][coluna])
+
         # Obtém movimentos permitidos
         movimentos = get_permitted_moves(labirinto[linha][coluna])
-
-        # Itera sobre movimentos, mostrando letras nas células
+        print(f"DFS: Letra atual: {labirinto[linha][coluna]} | Caminho atual: {' -> '.join(caminho)} | movimentos: {movimentos}")
+        print("\n")
+        # Tenta cada movimento na profundidade antes de retroceder
         for auxLinha, auxColuna in movimentos:
             newLinha, newColuna = linha + auxLinha, coluna + auxColuna
             if 0 <= newLinha < LINHAS and 0 <= newColuna < COLUNAS and (newLinha, newColuna) not in visitados:
-                fila.append(((newLinha, newColuna), comprimento + 1))
-                # Adiciona a letra correspondente à fila_letras
-                fila_letras.append(labirinto[newLinha][newColuna])  # Adiciona a letra da nova posição
-                visitados.add((newLinha, newColuna))
+                if dfs_recursive(newLinha, newColuna, caminho):
+                    encontrou_caminho = True
+                    break  # Se encontrar o caminho, interrompe a recursão para esta chamada
 
-        # Exibe a fila com letras, não coordenadas
-        print(f"Fila: {fila_letras}")
-        print("\n")
+        # Retrocede removendo a última célula e desmarcando como visitado
+        if not encontrou_caminho:
+            caminho.pop()
+            visitados.remove((linha, coluna))
+        return encontrou_caminho
 
-    print("BFS: Destino não alcançável")
-    return -1  # Caso o destino não seja alcançável
+    # Chama a DFS recursiva e exibe o resultado
+    encontrou_caminho = dfs_recursive(start[0], start[1], caminho_atual)
+    if encontrou_caminho:
+        return len(caminho_atual) - 1
+    else:
+        print("DFS: Destino não alcançável")
+        return -1
 
-# Executa a busca BFS
+# Executa a busca DFS
 start = (4, 0)
 end = (0, 4)
-resultado = BFS(labirinto, start, end)
-
-start_time = time.time()
-print("\nMenor caminho encontrado pelo BFS:", resultado)
-end_time = time.time()
-duracao_bfs = (end_time - start_time) * 1e6  # Microssegundos
-
-print(f"\nTempo de execução:  {duracao_bfs:.4f} microsegundos")
-
+resultado = DFS(labirinto, start, end)
+print("\nMenor caminho encontrado pelo DFS:", resultado)
