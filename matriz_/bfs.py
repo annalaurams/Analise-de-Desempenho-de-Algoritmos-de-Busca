@@ -2,8 +2,6 @@ from collections import deque
 import time
 
 
-
-
 labirinto = [
     ['A', 'B!?', '!C', 'D?', 'E'],
     ['?F', '?G?', '?H', 'I!?', '?!J'],
