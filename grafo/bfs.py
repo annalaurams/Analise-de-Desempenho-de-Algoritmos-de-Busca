@@ -4,7 +4,7 @@ import networkx as nx
 import time
 from memory_profiler import profile
 
-@profile  # Adiciona o decorador para monitorar a função
+@profile  
 def bfs(G, inicio, fim):
     visitados = set()
     fila = deque([inicio])
@@ -13,24 +13,22 @@ def bfs(G, inicio, fim):
         vertice = fila.popleft()
         if vertice not in visitados:
             print(vertice, end=' ')
+            print("")
             visitados.add(vertice)
             
-            # Se o vértice atual é o fim, finalize a busca
             if vertice == fim:
-                print("\nFim da busca.")
+                print("\nFim da busca.\n")
                 return
-            
-            # Converte G[vertice] para um conjunto para usar a operação de subtração
+        
             fila.extend(set(G[vertice]) - visitados)
 
     print("\nO vértice de destino não foi encontrado no grafo.")
 
-# Executar o BFS
-inicio = 'U'  # Vértice de início
-fim = 'E'     # Vértice de fim
+inicio = 'U'  
+fim = 'A'     
 start_time = time.time()
 bfs(G, inicio, fim)
 end_time = time.time()
-duracao_bfs = (end_time - start_time) * 1e6  # Microssegundos
+duracao_bfs = (end_time - start_time)  
 
-print(f"\nTempo de execução:  {duracao_bfs:.4f} microsegundos")
+print(f"\nTempo de execução:  {duracao_bfs:.4f} segundos \n")
