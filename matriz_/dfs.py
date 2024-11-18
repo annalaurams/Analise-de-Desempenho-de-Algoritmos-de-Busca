@@ -1,4 +1,6 @@
 import time
+from memory_profiler import profile
+
 labirinto = [
     ['A', 'B!?', '!C', 'D?', 'E'],
     ['?F', '?G?', '?H', 'I!?', '?!J'],
@@ -38,6 +40,7 @@ def get_permitted_moves(cell):
 
     return list(moves.values())
 
+@profile  
 def DFS(labirinto, start, end):
     LINHAS, COLUNAS = len(labirinto), len(labirinto[0])
     visitados = set()
@@ -58,8 +61,8 @@ def DFS(labirinto, start, end):
 
         # Obtém movimentos permitidos
         movimentos = get_permitted_moves(labirinto[linha][coluna])
-        print(f"DFS: Letra atual: {labirinto[linha][coluna]} | Caminho atual: {' -> '.join(caminho)} | movimentos: {movimentos}")
-        print("\n")
+        # print(f"DFS: Letra atual: {labirinto[linha][coluna]} | Caminho atual: {' -> '.join(caminho)} | movimentos: {movimentos}")
+        # print("\n")
         # Tenta cada movimento na profundidade antes de retroceder
         for auxLinha, auxColuna in movimentos:
             newLinha, newColuna = linha + auxLinha, coluna + auxColuna
@@ -91,6 +94,6 @@ resultado = DFS(labirinto, start, end)
 print("\nMenor caminho encontrado pelo DFS:", resultado)
 
 end_time = time.time()
-duracao_bfs = (end_time - start_time) * 1e6  # Microssegundos
+duracao_bfs = (end_time - start_time)  # segundos
 
-print(f"\nTempo de execução:  {duracao_bfs:.4f} microsegundos")
+print(f"\nTempo de execução:  {duracao_bfs:.4f} segundos")

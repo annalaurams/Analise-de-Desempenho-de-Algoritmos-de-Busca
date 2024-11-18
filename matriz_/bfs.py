@@ -1,6 +1,7 @@
 from collections import deque
 import time
 
+from memory_profiler import profile
 
 labirinto = [
     ['A', 'B!?', '!C', 'D?', 'E'],
@@ -41,6 +42,7 @@ def get_permitted_moves(cell):
 
     return list(moves.values())
 
+@profile  
 def BFS(labirinto, start, end):
     
     LINHAS, COLUNAS = len(labirinto), len(labirinto[0])
@@ -55,7 +57,7 @@ def BFS(labirinto, start, end):
         (linha, coluna), comprimento = fila.popleft()
         
         # Mostra a célula atual e o comprimento até o momento
-        print(f"BFS: Letra atual: {labirinto[linha][coluna]} com comprimento atual: {comprimento}")
+        # print(f"BFS: Letra atual: {labirinto[linha][coluna]} com comprimento atual: {comprimento}")
 
         # Checa se alcançou o ponto de destino
         if (linha, coluna) == end:
@@ -75,8 +77,8 @@ def BFS(labirinto, start, end):
                 visitados.add((newLinha, newColuna))
 
         # Exibe a fila com letras, não coordenadas
-        print(f"Fila: {fila_letras}")
-        print("\n")
+        # print(f"Fila: {fila_letras}")
+        # print("\n")
 
     print("BFS: Destino não alcançável")
     return -1  # Caso o destino não seja alcançável
@@ -89,7 +91,7 @@ resultado = BFS(labirinto, start, end)
 start_time = time.time()
 print("\nMenor caminho encontrado pelo BFS:", resultado)
 end_time = time.time()
-duracao_bfs = (end_time - start_time) * 1e6  # Microssegundos
+duracao_bfs = (end_time - start_time) #segundos
 
-print(f"\nTempo de execução:  {duracao_bfs:.4f} microsegundos")
+print(f"\nTempo de execução:  {duracao_bfs:.4f} segundos")
 
