@@ -9,7 +9,9 @@ Para tanto, temos as seguintes diretrizes de execução:
 
 | Comando                |  Algoritmo                                                                                           |                     
 | -----------------------| ------------------------------------------------------------------------------------------------- |
-|  python3      codigo.py          | Execução do código completo                                        |
+|  python3      bfs.py          | Execução da busca em largura                                   |
+|  python3      dfs.py          | Execução da busca em profundidade                                   |
+
 
 ## Contato
 <div>
