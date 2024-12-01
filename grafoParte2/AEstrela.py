@@ -1,5 +1,5 @@
 import networkx as nx
-from grafo2 import G  # Importa o grafo definido como 'G'
+from grafo2 import G  
 import time
 from memory_profiler import profile
 

@@ -4,6 +4,7 @@ O algoritmo desenvolvido através da IDE Visual Studio no sistema operacional Li
 
 O código disponibilizado pode ser executado no sistema operacional Linux e Windows, sendo necessário informar a versão Python instalada em seu computador. O algoritmo também pode ser executado pelo Google Colab.
 
+Certifique-se de ter as bibliotecas instaladas.
 
 Para tanto, temos as seguintes diretrizes de execução:
 
