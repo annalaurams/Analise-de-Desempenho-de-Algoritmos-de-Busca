@@ -12,6 +12,9 @@ Para tanto, temos as seguintes diretrizes de execução:
 | -----------------------| ------------------------------------------------------------------------------------------------- |
 |  python3      bfs.py          | Execução da busca em largura                                   |
 |  python3      dfs.py          | Execução da busca em profundidade                                   |
+|  python3      guloso.py          | Execução algoritmo guloso                                   |
+|  python3      AEstrela.py          | Execução algoritmo A*                                   |
+
 
 
 ## Contato

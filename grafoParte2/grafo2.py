@@ -7,7 +7,7 @@ def carregar_grafo_com_pesos(filename):
     with open(filename, 'r') as file:
         linhas = file.readlines()
         
-        colunas = linhas[0].strip().split(',')[1:]  # Ignorar primeiro elemento (vazio)
+        colunas = linhas[0].strip().split(',')[1:]  
 
         G.add_nodes_from(colunas)
         
@@ -15,16 +15,15 @@ def carregar_grafo_com_pesos(filename):
             dados = linha.strip().split(',')
             nodo = dados[0]
             for j, valor in enumerate(dados[1:]):
-                if valor != '0':  # Considera apenas conexões com peso
-                    peso = float(valor)  # Convertendo o peso para float
+                if valor != '0':  
+                    peso = float(valor)  
                     G.add_edge(nodo, colunas[j], weight=peso)
 
     return G
 
-# Carrega o grafo do arquivo com pesos
 G = carregar_grafo_com_pesos('matriz.csv')
 
-# Mostra o grafo com pesos
+# Grafo
 # pos = nx.spring_layout(G)
 # edge_labels = nx.get_edge_attributes(G, 'weight')  # Obtém os pesos das arestas
 # plt.figure(figsize=(10, 8))

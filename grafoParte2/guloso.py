@@ -1,9 +1,9 @@
 import networkx as nx
-from grafo2 import G  # Importa o grafo definido como 'G'
+from grafo2 import G  
 import time
 from memory_profiler import profile
 
-# Tabela hash para representar a heurística
+# Tabela hash - heurística
 heuristica = {
     'A': 4, 'B': 3, 'C': 2, 'D': 1, 'E': 0,
     'F': 5, 'G': 4, 'H': 3, 'I': 2, 'J': 1,
@@ -14,28 +14,24 @@ heuristica = {
 
 @profile  
 def algoritmo_guloso(grafo, heuristica, origem, destino):
-    """
-    Implementação do algoritmo guloso (Greedy Best-First Search)
-    com critério de desempate para heurísticas iguais.
-    """
-    caminho = [origem]  # Inicializa o caminho
-    visitados = set()  # Conjunto para armazenar nós visitados
+   
+    caminho = [origem] 
+    visitados = set() 
     atual = origem
-    print(f"Partindo de: {atual}")
+    print(f"Início: {atual}")
 
     while atual != destino:
-        visitados.add(atual)  # Marca o nó atual como visitado
-        # Seleciona vizinhos não visitados
+        visitados.add(atual) 
+        
         vizinhos = [nodo for nodo in grafo.neighbors(atual) if nodo not in visitados]
 
         if not vizinhos:
             print("Caminho impossível!")
             return []
 
-        # Escolhe o vizinho com o menor valor heurístico e desempata por ordem alfabética
         proximo = min(
             vizinhos, 
-            key=lambda nodo: (heuristica[nodo], nodo)  # Primeiro pela heurística, depois pelo nome do nó
+            key=lambda nodo: (heuristica[nodo], nodo) 
         )
 
         print(f"De {atual} para {proximo} (heurística: {heuristica[proximo]})")
@@ -46,12 +42,11 @@ def algoritmo_guloso(grafo, heuristica, origem, destino):
     return caminho
 
 
-# Exemplo de uso
 if __name__ == "__main__":
-    origem = 'U'  # Nó inicial
-    destino = 'E'  # Nó final
+    
+    origem = 'U'  
+    destino = 'E' 
 
-    # Executa o algoritmo guloso no grafo importado
     start_time = time.time()
     
     caminho = algoritmo_guloso(G, heuristica, origem, destino)
@@ -61,4 +56,3 @@ if __name__ == "__main__":
     duracao_bfs = (end_time - start_time)  
 
     print(f"\nTempo de execução: {duracao_bfs:.4f} segundos\n")
-
