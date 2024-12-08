@@ -4,7 +4,7 @@ O algoritmo desenvolvido através da IDE Visual Studio no sistema operacional Li
 
 O código disponibilizado pode ser executado no sistema operacional Linux e Windows, sendo necessário informar a versão Python instalada em seu computador. O algoritmo também pode ser executado pelo Google Colab.
 
-Certifique-se de ter as bibliotecas instaladas.
+Certifique-se de ter as bibliotecas instaladas. Para acessar a busca em largura e profundidade, entrar dentro da pasta ``` grafo``` e para acessar a busca pelo algoritmo guloso e A*, entrar dentro da pasta ```grafoParte2```
 
 Para tanto, temos as seguintes diretrizes de execução:
 
